@@ -1,0 +1,13 @@
+{
+    "name": "poo/project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Poo\\Project\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "ext-pdo": "*"
+    }
+}

@@ -1,0 +1,1 @@
+<p>Bienvenue sur la page home</p>
