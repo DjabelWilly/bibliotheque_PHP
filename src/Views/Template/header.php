@@ -10,6 +10,9 @@
                     <li>
                         <a class="d-flex btn btn-dark" role="search" href="?controller=LivreController&method=displayLivres">Livres</a>
                     </li>
+                     <li>
+                        <a class="d-flex btn btn-dark" role="search" href="?controller=GenreController&method=displayGenre">Genre</a>
+                    </li>
                     <li>
                         <a class="d-flex btn btn-primary" role="search" href="?controller=SearchController&method=index">Search</a>
                     </li>
