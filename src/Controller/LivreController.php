@@ -12,9 +12,11 @@ class LivreController extends AbstractController
     public function displayLivres()
     {
         $model = Model::getInstance();
+        // assigne à $result le contenu de la table livre (readAll retourne un tableau d'objet)
         $result = $model->readAll('livre');
+        // crée un tableau $keyResult qui a pour clé: livres et pour valeur: $result
         $keyResult = ['livres' => $result];
-        $this->render('livres', 'livres', $keyResult);
+        $this->render('livres', 'Nos livres', $keyResult);
 
     }
 
