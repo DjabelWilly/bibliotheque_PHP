@@ -5,10 +5,11 @@ namespace Poo\Project\Controller;
 use Poo\Project\Kernel\AbstractController;
 use Poo\Project\Kernel\Model;
 use Poo\Project\Controller\GenreController;
+use Poo\Project\Kernel\Validate;
 
 class LivreController extends AbstractController
 {
-
+    // gestion de l'affichage de tous les livres
     public function displayLivres()
     {
         $model = Model::getInstance();
@@ -20,6 +21,7 @@ class LivreController extends AbstractController
 
     }
 
+    // gestion de l'affichage d'un livre
     public function displayLivre()
     {
         $model = Model::getInstance();
@@ -36,6 +38,44 @@ class LivreController extends AbstractController
   
     }
 
+    // ajouter un livre
+    public function createLivre()
+    {
+        $message = '';
+        if (isset($_POST['submit'])) {
 
+            $message = Validate::valideName($_POST['titre'], "le champ 'Titre' contient des caracteres incorrects<br>", "le champ 'Titre' est vide<br>");
+            $message .= Validate::valideName($_POST['genre'], "le champ 'Genre' contient des caracteres incorrects<br>", "le champ 'Genre' est vide<br>");
+            $message .= Validate::validateNumber($_POST['auteur'], "le champ 'Auteur' contient des caracteres incorrects<br>", "le champ ' Auteur' est vide<br>");
+            // $message .= Validate::validateNumber($_POST['id_genre'], "le champ 'id_genre' contient des caracteres incorrects<br>", "le champ 'id_genre' est vide<br>");
+
+            if ($message === '') {
+                $datas = [
+                    'titre' => $_POST['titre'],
+                    'genre' => $_POST['genre'],
+                    'auteur' => $_POST['auteur'],
+                    
+                ];
+                Model::getInstance()->save('livre', $datas);
+                $message = "le livre " . $datas['titre'] . " a bien été enregistré";
+            }
+        }
+        $this->render('livres', 'nouveau Livre', ['message' => $message]);
+    }
 }
+//   public function createAuteur()
+//     {
+//         $message = '';
+//         if (isset($_POST['submit'])) {
 
+//             $message = Validate::valideName($_POST['nom'], "le champ 'Nom' contient des caracteres incorrects<br>", "le champ 'Nom' est vide<br>");
+
+//             if ($message === '') {
+//                 $nom = $_POST['nom'];
+//                 Model::getInstance()->save('auteur', ['nom' => $nom]);
+//                 $message = "l'auteur " . $nom . " a bien été enregistré";
+//             }
+//         }
+
+//         $this->render('formAuteurCreate', 'Nouvel Auteur', ['message' => $message]);
+//     }
