@@ -9,7 +9,7 @@ use Poo\Project\Kernel\Validate;
 
 class LivreController extends AbstractController
 {
-
+    // gestion de l'affichage de tous les livres
     public function displayLivres()
     {
         $model = Model::getInstance();
@@ -24,6 +24,7 @@ class LivreController extends AbstractController
 
     }
 
+    // gestion de l'affichage d'un livre
     public function displayLivre()
     {
         //Initialisation du modèle : La méthode commence par obtenir une instance du modèle en utilisant Model::getInstance(). Le modèle est probablement responsable de l'interaction avec la base de données.
@@ -47,24 +48,6 @@ class LivreController extends AbstractController
   
     }
 
-    public function createLivre()
-    {
-        $message = '';
-        if (isset($_POST['submit'])) {
-
-            $message = Validate::valideName($_POST['titre'], "le champ 'Titre' contient des caracteres incorrects<br>", "le champ 'Titre' est vide<br>");
-            $message = Validate::valideName($_POST['titre'], "le champ 'Titre' contient des caracteres incorrects<br>", "le champ 'Titre' est vide<br>");
-
-            if ($message === '') {
-                $titre = $_POST['titre'];
-                
-                Model::getInstance()->save('livre', ['livre' => $titre]);
-                $message = "le livre " . $titre . " a bien été enregistré";
-            }
-        }
-
-        $this->render('livres', 'Nouvel Auteur', ['message' => $message]);
-    }
 
 }
 
