@@ -22,16 +22,19 @@ class GenreController extends AbstractController
     public function displayLivreByGenre()
     {
         $model = Model::getInstance();
-        $livre = $model->getById('livre', $_GET['id']);
-        // récupère la table "genre" en passant par la clé étrangère id_genre présente dans la table "livre"
-        $genre = $model->getById('genre', $livre->getId_genre());
-        $auteur = $model->getByAttribute('livre', ['id' => $livre->getId()]);
 
-        $this->render('genre', $livre->getTitre(), [
-            'livre' => $livre,
-            'auteur' => $auteur,
-            'genre' => $genre->getNom()
+        $genre = $model->getById('genre', $_GET['id']);
+
+        $livre = $model->getById('livre', $genre->getId());
+
+        $titre = $model->getByAttribute('livre', ['id_genre' => $livre->getTitre()]);
+
+        $this->render('genre', $genre->getNom(), [
+             'livre' => $livre->getAuteur,
+            // 'titre' => $titre,
+            // 'genre' => $genre->getNom()
         ]);
+     
   
     }
 }
