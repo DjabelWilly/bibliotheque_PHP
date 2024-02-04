@@ -64,4 +64,11 @@
         </tbody>
     </table>
 </section>
+<form action='' method='POST'>
+    <label for='titre'>Titre</label>
+    <input type='text' name='titre' id='titre'>
+    <label for='auteur'>Titre</label>
+    <input type='text' name='titre' id='titre'>
 
+    <button type='submit' name='submit'>Envoyer</button>
+</form>
