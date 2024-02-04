@@ -38,44 +38,64 @@ class LivreController extends AbstractController
   
     }
 
-    // ajouter un livre
+    //ajouter un livre
     public function createLivre()
     {
         $message = '';
         if (isset($_POST['submit'])) {
 
             $message = Validate::valideName($_POST['titre'], "le champ 'Titre' contient des caracteres incorrects<br>", "le champ 'Titre' est vide<br>");
-            $message .= Validate::valideName($_POST['genre'], "le champ 'Genre' contient des caracteres incorrects<br>", "le champ 'Genre' est vide<br>");
-            $message .= Validate::validateNumber($_POST['auteur'], "le champ 'Auteur' contient des caracteres incorrects<br>", "le champ ' Auteur' est vide<br>");
-            // $message .= Validate::validateNumber($_POST['id_genre'], "le champ 'id_genre' contient des caracteres incorrects<br>", "le champ 'id_genre' est vide<br>");
-
+            // $message .= Validate::valideName($_POST['genre'], "le champ 'Genre' contient des caracteres incorrects<br>", "le champ 'Genre' est vide<br>");
+            $message .= Validate::valideName($_POST['auteur'], "le champ 'Auteur' contient des caracteres incorrects<br>", "le champ ' Auteur' est vide<br>");
+            $message .= Validate::validateNumber($_POST['id_genre'], "le champ 'id_genre' contient des caracteres incorrects<br>", "le champ 'id_genre' est vide<br>");
+            
             if ($message === '') {
                 $datas = [
                     'titre' => $_POST['titre'],
-                    'genre' => $_POST['genre'],
+                    'id_genre' => $_POST['id_genre'],
                     'auteur' => $_POST['auteur'],
                     
                 ];
                 Model::getInstance()->save('livre', $datas);
                 $message = "le livre " . $datas['titre'] . " a bien été enregistré";
+                header('location: ?controller=LivreController&method=displayLivres');
+
             }
-        }
-        $this->render('livres', 'nouveau Livre', ['message' => $message]);
-    }
+            // var_dump($message);
+            $this->render('livres', 'nouveau Livre', ['message' => $message]);
+
+       }
+
+    }    
+        // public function createLivre()
+        // {
+        //     if (isset($_POST['titre']) && isset($_POST['auteur']) && isset($_POST['id_genre'])) 
+        //     {
+        //         Model::getInstance()->save('livre', $_POST);
+        //         header('location: ?controller=LivreController&method=livres');
+            
+        
+                    
+        //     }
+           
+        // }
+           
+    //     public function createLivre()
+    // {
+          
+    //         $message = '';
+    //         if (isset ($_POST['titre']))
+    //         {
+    //             $message = Validate::valideName($_POST['titre'], "le champ 'Titre' contient des caracteres incorrects<br>", "le champ 'Titre' est vide<br>");
+    //             Model::getInstance()->save('livre', $_POST);
+    //              header('location: ?controller=LivreController&method=livres');
+                
+    //          }
+
+        
+    
+
+
+    // }
+
 }
-//   public function createAuteur()
-//     {
-//         $message = '';
-//         if (isset($_POST['submit'])) {
-
-//             $message = Validate::valideName($_POST['nom'], "le champ 'Nom' contient des caracteres incorrects<br>", "le champ 'Nom' est vide<br>");
-
-//             if ($message === '') {
-//                 $nom = $_POST['nom'];
-//                 Model::getInstance()->save('auteur', ['nom' => $nom]);
-//                 $message = "l'auteur " . $nom . " a bien été enregistré";
-//             }
-//         }
-
-//         $this->render('formAuteurCreate', 'Nouvel Auteur', ['message' => $message]);
-//     }
