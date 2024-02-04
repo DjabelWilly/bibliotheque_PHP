@@ -4,7 +4,7 @@
             <a class="navbar-brand text-white ms-3">La Bibliothèque 2.0</a>
             <ul class="d-flex align-items-center gap-2 list-unstyled">
                 <li class="d-flex align-items-center">
-                    <a class="d-flex text-decoration-none my-3 me-3" role="search"
+                    <a class="d-flex text-white text-decoration-none my-3 me-3" role="search"
                         href="?controller=HomeController&method=home"><svg xmlns="http://www.w3.org/2000/svg" width="26"
                             height="26" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                             <path
@@ -13,7 +13,7 @@
                 </li>
 
                 <li>
-                    <a class="d-flex text-decoration-none me-3" role="search"
+                    <a class="d-flex text-white text-decoration-none me-3" role="search"
                         href="?controller=SearchController&method=index"><svg xmlns="http://www.w3.org/2000/svg"
                             width="26" height="26" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path
@@ -21,11 +21,11 @@
                         </svg></a>
                 </li>
                 <li>
-                    <a class="d-flex text-decoration-none my-3 me-3" role="search"
+                    <a class="d-flex text-white text-decoration-none my-3 me-3" role="search"
                         href="?controller=LivreController&method=displayLivres">Livres</a>
                 </li>
                 <li>
-                    <a class="d-flex text-decoration-none my-3 me-3" role="search"
+                    <a class="d-flex text-white text-decoration-none my-3 me-3" role="search"
                         href="?controller=GenreController&method=displayGenres">Genre</a>
                 </li>
             </ul>

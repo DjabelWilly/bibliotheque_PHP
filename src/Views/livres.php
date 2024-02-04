@@ -29,6 +29,8 @@
             <button type='submit' name='submit'>Envoyer</button>
         </form>
     </div>
+    <!-- end form de recherche de livre -->
+
 </section>
 <br>
 
@@ -37,14 +39,25 @@
         <h2>Liste des livres</h2>
     </div>
 
-    <ul>
-        <?php
-        foreach ($livres as $livre) {
-            echo "<li>  
-                    <a class='text-decoration-none text-black' href='?controller=LivreController&method=displayLivre&id=" .
-                $livre->getId() . "'>Livre " . $livre->getId() . " : " . $livre->getTitre() .
-                "</a> 
-                </li>";
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"># id</th>
+                <th scope="col">titre</th>
+                <th scope="col">auteur</th>
+                <th scope="col">genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($livres as $livre) {
+               
+                echo "<tr> 
+                        <th scope='row'> <a class='text-decoration-none text-black' href='?controller=LivreController&method=displaylivre&id=". $livre->getId() ."'>". $livre->getId(). "</a> </th>
+                        <td> <a class='text-decoration-none text-black' href='?controller=LivreController&method=displaylivre&id=" . $livre->getId() . "'>" . $livre->getTitre() . "</a> </td>
+                        <td> <a class='text-decoration-none text-black' href='?controller=LivreController&method=displaylivre&id=" . $livre->getId() . "'>" . $livre->getAuteur() . "</a> </td>
+                        <td>" . $livre->getId_genre() . "</td>
+                    </tr>";
 
         }
 
