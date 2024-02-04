@@ -18,6 +18,7 @@ class LivreController extends AbstractController
         // crée un tableau $keyResult qui a pour clé: livres et pour valeur: $result
         $keyResult = ['livres' => $result];
         $this->render('livres', 'Nos livres', $keyResult);
+        
 
     }
 
