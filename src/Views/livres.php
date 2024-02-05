@@ -1,31 +1,31 @@
 <section class="container">
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-end"> 
         <?php
-        use Poo\Project\Controller\GenreController;
+            $message = isset($message) ? $message : '';
+
         if ($message !== '') {
             echo "<p class='text-danger'>" . $message . "</p>";
         }
         ?>
-
-        <!-- form de recherche de livre -->
-
-        <form action='' method='POST'>
+         <form action="?controller=LivreController&method=createLivre" method='POST'>
             <label for='titre'>Ajouter un Livre</label>
             <input type='text' name='titre' id='titre' placeholder="titre">
 
             <label for='auteur'></label>
             <input type='text' name='auteur' id='auteur' placeholder="auteur">
 
-            <select name="genre" id="id_genre">
-                <option value="">genre</option>
-                <option value="Fantastique">Fantastique</option>
-                <option value="Comedie">Comédie</option>
-                <option value="Action">Action</option>
-                <option value="Drame">Drame</option>
-                <option value="Science-Fiction">Science-Fiction</option>
-                <option value="Horreur">Horreur</option>
-            </select>
+            <!-- <label for='genre'></label> -->
+            <!-- <input type='text' name='genre' id='id_genre' value="getGenre" placeholder="genre"> -->
 
+            <select class="form-select" aria-label="Default select example" name="id_genre">
+                          <option selected>Selectionner le genre</option>
+                          <option value="1">Fantastique</option>
+                          <option value="3">Comédie</option>
+                          <option value="4">Drame</option>
+                          <option value="5">Action</option>
+                          <option value="6">Science-Fiction</option>
+                          <option value="7">Horreur</option>
+                    </select>
             <button type='submit' name='submit'>Envoyer</button>
         </form>
     </div>
@@ -59,16 +59,75 @@
                         <td>" . $livre->getId_genre() . "</td>
                     </tr>";
 
-            }
-            ?>
-        </tbody>
-    </table>
-</section>
-<form action='' method='POST'>
-    <label for='titre'>Titre</label>
-    <input type='text' name='titre' id='titre'>
-    <label for='auteur'>Titre</label>
-    <input type='text' name='titre' id='titre'>
+        }
 
-    <button type='submit' name='submit'>Envoyer</button>
-</form>
+         ?>
+    </ul>
+</section>
+
+
+<!-- <div class="card">
+  <div class="card-body">
+   
+        <div class="card">
+          <div class="card-body">
+
+                <form action="?controller=LivreController&method=addlivre" method='POST'>
+                  <h2>Formulaire de création d'un livre</h2>
+                  
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Titre du livre</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Un titre" name="titre">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Auteur du livre</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Un auteur" name="auteur">
+                  </div>
+
+                  <div>
+                  <label for="formGroupExampleInput3">Selectionner un genre</label>
+                    <select class="form-select" aria-label="Default select example" name="id_genre">
+                          <option selected>Select le genre</option>
+                          <option value="1">Fantastique</option>
+                          <option value="3">Comédie</option>
+                          <option value="4">Drame</option>
+                          <option value="5">Action</option>
+                          <option value="6">Science-Fiction</option>
+                          <option value="7">Horreur</option>
+                    </select>
+                  </div>
+                
+                  </br>
+
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Ajouter</button>
+                  </div>
+
+          </div>
+        </div>
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">TITRE</th>
+          <th scope="col">AUTEUR</th>
+          <th scope="col">GENRE</th>
+        </tr>
+      </thead>
+      <tbody>
+         <?php foreach ($livres as $livre) : ?> 
+          <tr>
+
+            <td><?php echo $livre->getTitre(); ?></td>
+            <td><?php echo $livre->getAuteur(); ?></td>
+            <td><?php echo $livre->getGenre()->getNom(); ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</br> -->

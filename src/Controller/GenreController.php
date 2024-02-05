@@ -4,8 +4,7 @@ namespace Poo\Project\Controller;
 
 use Poo\Project\Kernel\AbstractController;
 use Poo\Project\Kernel\Model;
-use Poo\Project\Controller\LivreController;
-
+use Poo\Project\Kernel\Validate;
 
 class GenreController extends AbstractController
 {
@@ -28,11 +27,30 @@ class GenreController extends AbstractController
         $livresParGenre = $model->getByAttribute('livre', ['id_genre' => $_GET['id']]);
 
         $variables = [
-            // 'genre' => $genre,
+            'genre' => $genre,
             'livres' => $livresParGenre,
         ];
 
         $this->render('genre', $genre->getNom(), $variables);
+    }
+
+    public function createGenre()
+    {
+        $message = '';
+        if (isset($_POST['submit'])) {
+
+            $message = Validate::valideName($_POST['nom'], "le champ 'Nom' contient des caracteres incorrects<br>", "le champ 'Nom' est vide<br>");
+
+            if ($message === '') {
+                $nom = $_POST['nom'];
+                Model::getInstance()->save('genre', ['nom' => $nom]);
+                $message = "le nouveau " . $nom . " a bien été enregistré";
+            }
+        }
+
+        $this->render('genres', 'Nouveau Genre', ['message' => $message]);
+                   
+    
     }
 
 
