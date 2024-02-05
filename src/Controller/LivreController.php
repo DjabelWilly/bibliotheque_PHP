@@ -17,8 +17,8 @@ class LivreController extends AbstractController
         $result = $model->readAll('livre');
         // crée un tableau $keyResult qui a pour clé: livres et pour valeur: $result
         $keyResult = ['livres' => $result];
-        $this->render('livres', 'Nos livres', $keyResult);
-        
+
+        $this->render('livres', 'Nos livres', $keyResult);  
 
     }
 
@@ -29,15 +29,31 @@ class LivreController extends AbstractController
         $livre = $model->getById('livre', $_GET['id']);
         // récupère la table "genre" en passant par la clé étrangère id_genre présente dans la table "livre"
         $genre = $model->getById('genre', $livre->getId_genre());
-        $auteur = $model->getByAttribute('livre', ['id' => $livre->getId()]);
+        // $auteur = $model->getByAttribute('livre', ['id' => $livre->getId()]);
 
         $this->render('livre', $livre->getTitre(), [
             'livre' => $livre,
-            'auteur' => $auteur,
-            'genre' => $genre->getNom()
+            // 'auteur' => $auteur,
+            'genre' => $genre->getNom(),
         ]);
-  
     }
+  
+    public function displayLivresAuteur()
+    {
+        $model = Model::getInstance();
+
+        $livre = $model->getById('livre', $_GET['id']);
+        $livres = $model->getByAttribute('livre', ['id' => $livre->getAuteur()]);
+
+        $variables = [
+            
+            'livres' => $livres,
+        ];
+
+        $this->render('auteur', $livre->getAuteur(), $variables);
+    }
+    
+
 
     // ajouter un livre
     public function createLivre()
@@ -64,19 +80,3 @@ class LivreController extends AbstractController
         $this->render('livres', 'nouveau Livre', ['message' => $message]);
     }
 }
-//   public function createAuteur()
-//     {
-//         $message = '';
-//         if (isset($_POST['submit'])) {
-
-//             $message = Validate::valideName($_POST['nom'], "le champ 'Nom' contient des caracteres incorrects<br>", "le champ 'Nom' est vide<br>");
-
-//             if ($message === '') {
-//                 $nom = $_POST['nom'];
-//                 Model::getInstance()->save('auteur', ['nom' => $nom]);
-//                 $message = "l'auteur " . $nom . " a bien été enregistré";
-//             }
-//         }
-
-//         $this->render('formAuteurCreate', 'Nouvel Auteur', ['message' => $message]);
-//     }
